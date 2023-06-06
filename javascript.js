@@ -4,15 +4,15 @@ let playerScore = 0;
 let computerScore = 0;
 
 // Prompts the player for input and then converts all characters to lowercase
-function playerInput () {
+function getPlayerInput () {
     let rawInput = prompt("Please choose rock, paper, or scissors");
     cleanInput = rawInput.toLowerCase();
     return cleanInput;
 }
 
 // Randomly assigns the computer either rock, paper, or scissors
-function computerInput() {
-    randomNumber = randomChoice(1, 3);
+function getComputerInput() {
+    randomNumber = getRandomNumber(1, 3);
     if (randomNumber === 1) {
         return "rock";
     } else if (randomNumber === 2) {
@@ -22,7 +22,7 @@ function computerInput() {
 }
 
 // Generates a random number between min and max
-function randomChoice(min, max) {
+function getRandomNumber(min, max) {
     return Math.floor(Math.random()* (max - min + 1)) + min;   
 }
 
@@ -80,8 +80,8 @@ function decideWinner(playerFinalScore, computerFinalScore) {
 // Points are totaled after each round and a winner is decided at the end of X rounds.
 for (i = gamesToPlay; i > 0; i--) {
 
-    let playerSelection = playerInput();
-    let computerSelection = computerInput();
+    let playerSelection = getPlayerInput();
+    let computerSelection = getComputerInput();
 
     roundWinner = playRound(playerSelection, computerSelection)
 
