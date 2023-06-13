@@ -4,10 +4,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./javascript.js"></script>
+    <script src="./javascript.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
     <title>Rock Paper Scissors</title>
 </head>
-<body>
+<body class="body">
     
+    <div class="start">
+        <div class="header">
+            <h1>Rock Paper Scissors</h1>
+        </div>
+
+        <div class="logo">
+            ✊
+        </div>
+
+        <div class="logo">
+            ✋
+        </div>
+
+        <div class="logo">
+            ✌️
+        </div>
+        <div class="footer">
+            <button class="startButton">Start</button>
+        </div>
+    </div>  
+
+    <div class="container">
+        <header class="header">
+            <h1>Rock Paper Scissors</h1>
+        </header>
+
+        <div class="resultArea">
+            <p class="result">
+                5 Points Wins!
+            </p>
+        </div>
+
+        <div class="selectionArea">
+            <div class="playerChoice">
+                <h3>Player</h3>
+                <div class="playerChoiceHand">
+
+                </div>
+            </div>
+            <div class="computerChoice">
+                <h3>Computer</h3>
+                <div class="computerChoiceHand">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="buttonSelection">
+            <button class="rock">Rock</button>
+            <button class="paper">Paper</button>
+            <button class="scissors">Scissors</button>
+            <button class="restartButton">Play Again?</button>
+        </div>
+        <div class="scoreBoard">
+            <div class="player">
+                <h3>Player Score</h3>
+                <p class="playerScore">
+                    0
+                </p>
+            </div>
+
+            <div class="computer">
+                <h3>Computer Score</h3>
+                <p class="computerScore">
+                0
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

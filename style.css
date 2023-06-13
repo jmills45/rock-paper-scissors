@@ -1,0 +1,204 @@
+* {
+    box-sizing: border-box;
+    font-family: "roboto";
+    margin: 0px;
+    padding: 0px;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #b5c5dd;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 10px solid white;
+    border-radius: 2rem;
+    overflow: hidden;  
+    display: none;
+}
+
+.header {
+    font-size: 2rem;;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: #222831;
+    padding: 1rem;
+}
+
+.resultArea {
+    text-align: center;
+    font-size: 3rem;
+    color: white;  
+    background-color: #393e46;
+}
+
+.selectionArea { 
+    display: flex; 
+    justify-content: space-evenly;
+    background-color: #393e46;
+    gap: 1rem;
+    flex: 2;
+    padding: 1rem;
+}
+
+.playerChoice, .computerChoice {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
+    background-color: #f2f2f2;
+    border-radius: 1rem;
+    box-shadow: 0px 10px 8px black;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.playerChoiceHand, .computerChoiceHand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    font-size: 10rem;
+}
+
+.buttonSelection {
+    display: flex;
+    justify-content: space-around;
+    flex: 1rem;
+    gap: 1rem;
+    background-color: #393e46;
+    padding: 1rem;
+
+}
+
+.rock, .paper, .scissors {
+    flex: 1;
+    background-color: #f2f2f2;
+    border: 2px solid black;
+    border-radius: .5rem;;
+    box-shadow: 0px 10px 8px black;
+    font-size: 2rem;;
+    padding: 1rem 0;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.scoreBoard {
+    display: flex;
+    justify-content: space-around;
+    background-color: #222831;
+    font-size: 2em;
+    color: white;
+    text-align: center;
+}
+
+.playerScore, .computerScore {
+    font-size: 7rem;
+}
+
+/* Game Start Screen */
+
+.start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border: 10px solid white;
+    border-radius: 2rem;
+    overflow: hidden;  
+    background-color: #393e46;
+}
+
+.startButton {
+    background-color: #f2f2f2;
+    border: 2px solid black;
+    border-radius: .5rem;;
+    box-shadow: 0px 10px 8px black;
+    font-size: 2rem;;
+    padding: 1rem 3rem;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 50%;
+    font-size: 7rem;
+    border-radius: 1rem;
+    box-shadow: 0px 10px 8px black;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: #222831;
+    padding: 1rem;
+    width: 100%;
+}
+
+/* Restart Button */
+
+.restartButton {
+    flex: 1;
+    background-color: #f2f2f2;
+    border: 2px solid black;
+    border-radius: .5rem;;
+    box-shadow: 0px 10px 8px black;
+    font-size: 2rem;;
+    padding: 1rem 0;
+    display: none;
+}
+
+/* Media Changes */
+
+@media screen and (max-width: 780px) {
+    .body {
+        align-items: stretch;
+    }
+    
+    .header {
+        font-size: 1rem;
+    }
+
+    .resultArea {
+        font-size: 2rem;
+    }
+
+    .container {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .playerChoice, .computerChoice {
+        font-size: 1rem;
+    }
+
+    .rock, .paper, .scissors {
+        font-size: 1.5rem;
+        margin: .5rem;
+    }
+
+    .playerScore, .computerScore {
+        font-size: 4rem;
+    }
+
+    .scoreBoard {
+        padding: 1rem;
+    }
+
+    .start {
+        border-radius: 0;
+        width: 100%;
+    }
+}
