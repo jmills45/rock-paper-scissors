@@ -2,10 +2,6 @@
 let playerScore = 0;
 let computerScore = 0;
 let gamesToPlay = 5;
-let computerSelection = "";
-let playerSelection = "";
-let roundWinner = "";
-let gameWinner = "";
 let hand = [{"name": "rock", "hand": "✊"}, {"name": "paper", "hand": "✋"}, {"name": "scissors", "hand": "✌️"}]
 
 // Result Messages
@@ -34,24 +30,33 @@ scissorButton.addEventListener("click", onClick);
 startButton.addEventListener("click", startGame);
 restartButton.addEventListener("click", restartGame);
 
+// Hide start screen and show game screen
 function startGame(){
     startScreen.style.display = "none";
     gameScreen.style.display = "flex";
 }
 
+function checkGameOver(winner) {
+    if (playerScore === gamesToPlay || computerScore === gamesToPlay) {
+        roundResult.textContent = `Game Over!  ${winner} Wins!`;
+        paperButton.style.display = "none";
+        rockButton.style.display = "none";
+        scissorButton.style.display = "none";
+        restartButton.style.display = "block";;
+    }
+}
+
+// Reset variables and start new game
 function restartGame(){
     playerScore = 0;
     computerScore = 0;
-    computerSelection = "";
-    playerSelection = "";
-    roundWinner = "";
     gameWinner = "";
 
     roundResult.textContent = "5 Points Wins";
     playerScoreBoard.textContent = 0;
     computerScoreBoard.textContent = 0;
-    playerChoice.textContent = "";
-    computerChoice.textContent = "";
+    playerChoice.textContent = "?";
+    computerChoice.textContent = "?";
 
     paperButton.style.display = "block";
     rockButton.style.display = "block";
@@ -66,13 +71,18 @@ function getPlayerInput(e) {
 
 // Randomly assigns the computer either rock, paper, or scissors
 function getComputerInput() {
+    let choice = ""
+
     randomNumber = getRandomNumber(1, 3);
+
     if (randomNumber === 1) {
-        return "rock";
+        choice = "rock";
     } else if (randomNumber === 2) {
-        return "paper";
-    } else
-        return "scissors";
+        choice = "paper";
+    } else {
+        choice = "scissors";
+    }
+    return choice;
 }
 
 // Generates a random number between min and max
@@ -80,6 +90,7 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random()* (max - min + 1)) + min;   
 }
 
+// Update scores
 function updatePoints(winner) { 
     switch(winner) {
         case("tie"):
@@ -94,58 +105,39 @@ function updatePoints(winner) {
 }
 
 // Update UI Elements
-function updateUI(winner, player, computer){
+function updateUI(winner, playerSelection, computerSelection){
 
     playerChoice.textContent = hand.find(item => item.name === playerSelection).hand;
     computerChoice.textContent = hand.find(item => item.name === computerSelection).hand;
 
-    if (gameWinner === "Player" || gameWinner === "Computer") {
-        paperButton.style.display = "none";
-        rockButton.style.display = "none";
-        scissorButton.style.display = "none";
-        restartButton.style.display = "block";;
-    }
-
+    playerScoreBoard.textContent = playerScore;
+    computerScoreBoard.textContent = computerScore;
+ 
     switch(winner) {
         case("tie"):
             roundResult.textContent = tieMessage;
             break;
         case("player"):
-            playerScoreBoard.textContent = playerScore;
             roundResult.textContent = winMessage;
             break;
         case("computer"):
-            computerScoreBoard.textContent = computerScore;
             roundResult.textContent = loseMessage;
             break;
     }
-}
-
-// Determine the winner of the game
-function decideWinner(player, computer){
-    if (player < gamesToPlay && computer < gamesToPlay) return;
-
-    if (player === gamesToPlay){
-        gameWinner = "Player";
-        roundResult.textContent = `Game Over!  ${gameWinner} Wins!`;
-        updateUI();
-    } else if (computer === gamesToPlay){
-        gameWinner = "Computer";
-        roundResult.textContent = `Game Over  ${gameWinner} Wins!`;
-        updateUI();
-    }
+    
 }
 
 // Start game functions on click
 function onClick(e) {
-    if (gameWinner !== "") return;
+    if (playerScore === gamesToPlay || computerScore === gamesToPlay) return;
 
-    playerSelection = getPlayerInput(e);
-    computerSelection = getComputerInput();
-    roundWinner = playRound(playerSelection, computerSelection);
+    let playerSelection = getPlayerInput(e);
+    let computerSelection = getComputerInput();
+    let roundWinner = playRound(playerSelection, computerSelection);
+
     updatePoints(roundWinner); 
     updateUI(roundWinner, playerSelection, computerSelection); 
-    decideWinner(playerScore, computerScore);
+    checkGameOver(roundWinner);
 }
 
 // Plays one round of rock, paper, scissors.
